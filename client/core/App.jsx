@@ -1,7 +1,7 @@
 import React from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 
-import styled, { createGlobalStyle } from 'styled-components'
+import styled, {createGlobalStyle} from 'styled-components'
 
 // import { useTheme } from '../core/Provider'
 
@@ -16,11 +16,11 @@ html, body, #app {
   padding: 0;
 }
 html {
-  font-size: ${({ theme }) => theme.default.baseFs}px;
+  font-size: ${({theme}) => theme.default.baseFs}px;
 }
 `
 
-export default function App({ children }) {
+export default function App({children}) {
   return (
     <>
       <GlobalStyle />

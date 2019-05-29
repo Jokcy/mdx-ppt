@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const debug = require('debug')('mp:webpack')
@@ -39,7 +40,7 @@ function createConfig(isDev, options = defaultOptions) {
   const config = {
     devtool: isDev ? 'cheap-eval-source-map' : 'source-map',
     mode: isDev ? 'development' : 'production',
-    entry: path.resolve(__dirname, '../client/app.jsx'),
+    entry: path.resolve(__dirname, './entry.js'),
     output: {
       publicPath: '/public/',
       filename: '[hash:8].js',
@@ -49,6 +50,7 @@ function createConfig(isDev, options = defaultOptions) {
         {
           test: /\.(js|jsx)$/,
           use: babelLoader,
+          exclude: [path.resolve(__dirname, 'lib')],
         },
         {
           test: /\.mdx?$/,
@@ -82,9 +84,12 @@ function createConfig(isDev, options = defaultOptions) {
     },
     plugins: [
       new HTMLWebpackPlugin({
-        template: path.resolve(__dirname, '../client/template.html'),
+        template: path.resolve(__dirname, '../src/template.html'),
       }),
       new CircularDependencyPlugin(),
+      new webpack.DefinePlugin({
+        ENV: JSON.stringify(process.env.ENV || ''),
+      }),
     ],
   }
 

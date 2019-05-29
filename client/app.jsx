@@ -1,14 +1,10 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
-import { BrowserRouter } from 'react-router-dom'
-
-import components from './components'
+import {BrowserRouter} from 'react-router-dom'
 
 import Provider from './core/Provider'
 
 import App from './core/App'
-
-// import Router from './router/Router'
 
 // 正式情况改成 'ppt.mdx'
 // import Test from './test.mdx'
