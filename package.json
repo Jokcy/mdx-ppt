@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
+  "repository": {
+    "url": "https://github.com/Jokcy/mdx-ppt"
+  },
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.js",
     "build": "webpack --config webpack.config.js",
