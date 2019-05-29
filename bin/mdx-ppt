@@ -6,6 +6,7 @@
  */
 
 const path = require('path')
+const debug = require('debug')('mp:command')
 
 const yargs = require('yargs')
 
@@ -27,14 +28,6 @@ const argv = yargs
   .describe('e', 'mdx file path, entry in config file')
   .alias('c', 'config')
   .describe('c', 'config file path').argv
-
-// console.log(argv, process.cwd())
-
-// if (argv._.length > 1) {
-//   console.log('only one command should be used')
-//   yargs.showHelp()
-//   return
-// }
 
 const command = argv._[0]
 
@@ -79,12 +72,13 @@ const webpackConfig = createWebpackConfig(isDev, webpackOptions)
 
 const compiler = webpack(webpackConfig)
 
-console.log(webpackOptions)
+debug('using webpack options:', webpackOptions)
 
 if (isDev) {
+  debug('starting dev server...')
   const devServer = new WebpackDevServer(compiler, {
     progress: true,
-    // stats: 'minimal',
+    stats: 'minimal',
     // useLocalIp: true,
     port: config.devPort || 8877,
     publicPath: '/public/',
@@ -96,15 +90,16 @@ if (isDev) {
     if (err) throw err
   })
 } else {
+  debug('building prod files...')
   compiler.run((err, stats) => {
     if (err) {
-      console.error(err)
+      debug('error found', err)
       return
     }
     if (stats.hasErrors) {
-      console.error(stats.toString())
+      debug('compile error found', stats.toString())
       return
     }
-    console.log(stats.toString())
+    debug(stats.toString())
   })
 }

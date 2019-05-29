@@ -1,7 +1,7 @@
 {
   "name": "mdx-ppt",
   "version": "0.0.3",
-  "main": "index.js",
+  "main": "lib/index.js",
   "license": "MIT",
   "repository": {
     "url": "https://github.com/Jokcy/mdx-ppt"
@@ -12,8 +12,9 @@
     "debug": "node --nolazy --inspect-brk=9229 webpack-dev-server --config webpack.config.js",
     "test": "jest",
     "test-watch": "jest --watch",
-    "start": "node bin/mp dev -c example/config.js",
-    "np": "np"
+    "start": "cross-env DEBUG=mp:* node bin/mdx-ppt dev -c example/config.js",
+    "np": "np",
+    "compile": "babel client --out-dir lib --presets=@babel/preset-env,@babel/preset-react"
   },
   "dependencies": {
     "@babel/core": "^7.4.4",
@@ -25,6 +26,7 @@
     "@mdx-js/react": "^1.0.16",
     "babel-loader": "^8.0.6",
     "circular-dependency-plugin": "^5.0.2",
+    "debug": "^4.1.1",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.8.0",
     "js-yaml": "^3.13.1",
@@ -47,9 +49,12 @@
     "yargs": "^13.2.4"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "cross-env": "^5.2.0",
     "regenerator-runtime": "^0.13.2"
   },
   "bin": {
     "mdx-ppt": "bin/mdx-ppt"
-  }
+  },
+  "files": ["lib", "src", "example", "bin", "package.json"]
 }

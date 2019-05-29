@@ -1,14 +1,13 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const debug = require('debug')('mp:webpack')
 
 const remarkFrontmatter = require('remark-frontmatter')
 const remarkYaml = require('remark-parse-yaml')
 
 const CircularDependencyPlugin = require('circular-dependency-plugin')
 
-const { page, rebuildTree, item_props } = require('./parser')
-
-// module.exports = config
+const {page, rebuildTree, item_props} = require('./parser')
 
 module.exports = createConfig
 
@@ -24,10 +23,18 @@ const defaultOptions = {
   inject: defaultClient,
 }
 
+const babelLoader = {
+  loader: 'babel-loader',
+  options: {
+    presets: ['@babel/env', '@babel/react'],
+  },
+}
+
 function createConfig(isDev, options = defaultOptions) {
+  debug('createing webpack config')
   const customWebpack = options.webpack || (c => c)
 
-  const { inject, entry, remarkPlugins, rehypePlugins } = options
+  const {inject, entry, remarkPlugins, rehypePlugins} = options
 
   const config = {
     devtool: isDev ? 'cheap-eval-source-map' : 'source-map',
@@ -41,19 +48,19 @@ function createConfig(isDev, options = defaultOptions) {
       rules: [
         {
           test: /\.(js|jsx)$/,
-          use: 'babel-loader',
+          use: babelLoader,
         },
         {
           test: /\.mdx?$/,
           use: [
-            'babel-loader',
+            babelLoader,
             {
               loader: '@mdx-js/loader',
               options: {
                 remarkPlugins: [
                   [
                     remarkFrontmatter,
-                    { type: 'yaml', marker: '+', anywhere: true },
+                    {type: 'yaml', marker: '+', anywhere: true},
                   ],
                   remarkYaml,
                   page,
