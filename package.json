@@ -1,6 +1,6 @@
 {
   "name": "mdx-ppt",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "main": "lib/index.js",
   "license": "MIT",
   "repository": {
@@ -14,7 +14,7 @@
     "test-watch": "jest --watch",
     "start": "cross-env ENV=LOCAL DEBUG=mp:* node bin/mdx-ppt dev -c example/config.js",
     "np": "np",
-    "compile": "babel client --out-dir lib --presets=@babel/preset-env,@babel/preset-react"
+    "compile": "babel client --out-dir lib --presets=@babel/preset-env,@babel/preset-react --plugins=transform-remove-console"
   },
   "dependencies": {
     "@babel/core": "^7.4.4",
@@ -48,7 +48,10 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "cross-env": "^5.2.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "regenerator-runtime": "^0.13.2"
   },
   "peerDependencies": {
