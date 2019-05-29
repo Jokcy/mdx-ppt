@@ -1,0 +1,110 @@
+#!/usr/bin/env node
+
+/**
+ * v1:
+ * 指定配置文件，所有配置都在配置文件内
+ */
+
+const path = require('path')
+
+const yargs = require('yargs')
+
+const webpack = require('webpack')
+const WebpackDevServer = require('webpack-dev-server')
+
+const createWebpackConfig = require('../src/webpack.config')
+
+const { version } = require('../package.json')
+
+const cwd = process.cwd()
+
+const argv = yargs
+  .version(version)
+  .usage('Usage: $0 <command> [options]')
+  .command(['dev', '$0'], 'development mode')
+  .command('build', 'create production build')
+  .alias('e', 'entry')
+  .describe('e', 'mdx file path, entry in config file')
+  .alias('c', 'config')
+  .describe('c', 'config file path').argv
+
+// console.log(argv, process.cwd())
+
+// if (argv._.length > 1) {
+//   console.log('only one command should be used')
+//   yargs.showHelp()
+//   return
+// }
+
+const command = argv._[0]
+
+const argEntryPath = argv.entry
+
+const argConfigPath = argv.config
+
+/**
+ * TODO:
+ * 1. 测试文件是否存在
+ */
+
+let config
+
+if (argConfigPath) {
+  config = require(path.resolve(cwd, argConfigPath))
+}
+
+config = config || {}
+
+if (argEntryPath) {
+  config.entry = path.resolve(cwd, argEntryPath)
+}
+
+const webpackOptions = {
+  // remark plugins
+  remarkPlugins: config.remarkPlugins || [],
+  // rehype plugins
+  rehypePlugins: config.rehypePlugins || [],
+  webpack: config.webpack || (c => c),
+
+  // 如果没有使用默认的
+  inject: config.inject ? path.resolve(cwd, config.inject) : '',
+
+  // 如果没有，使用默认
+  entry: config.entry ? path.resolve(cwd, config.entry) : '',
+}
+
+const isDev = command !== 'build'
+
+const webpackConfig = createWebpackConfig(isDev, webpackOptions)
+
+const compiler = webpack(webpackConfig)
+
+console.log(webpackOptions)
+
+if (isDev) {
+  const devServer = new WebpackDevServer(compiler, {
+    progress: true,
+    // stats: 'minimal',
+    // useLocalIp: true,
+    port: config.devPort || 8877,
+    publicPath: '/public/',
+    historyApiFallback: {
+      index: '/public/index.html',
+    },
+  })
+  devServer.listen(config.devPort || 8877, '0.0.0.0', err => {
+    if (err) throw err
+  })
+} else {
+  compiler.run((err, stats) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+    if (stats.hasErrors) {
+      console.error(stats.toString())
+      return
+    }
+    console.log(stats.toString())
+  })
+}

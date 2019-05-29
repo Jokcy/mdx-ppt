@@ -1,0 +1,6 @@
+node_modules
+.vscode
+*-error.log
+.yarnrc
+
+*.lock

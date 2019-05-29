@@ -1,0 +1,106 @@
+# 欢迎使用 MDX-PPT
+
+=== a=b,c=d,x=12
+MDX-PPT 提供你通过写 [MDX]() 语法，来生产 PPT 网页，让你能够非常方便得进行线上演示，
+并充分享受网页带来的便利。
+
+> 这是`blockquote`
+
++++
+title: 'jokcy'
++++
+
+# 你可以展示你的代码
+
+```js
+function hello_world() {
+  alert('hello world')
+}
+
+hello_world()
+```
+
++++
+title: 'jokcy'
++++
+
+# 标 题
+
+## 标 题
+
+### 标 题
+
+#### 标 题
+
+##### 标 题
+
+###### 标 题
+
++++
+title: 'jokcy'
++++
+
+# inline
+
+[这是一个百度的链接](http://baidu.com)
+
+这里是**强调**
+
+这里是*斜体*
+
+这里是`inline code`
+
+=== a=b,c=d,x=12
+这里是~~删除内容~~
+
++++
+title: 'jokcy'
++++
+
+# 图片
+
+这是图片的展示
+![这是图片](http://ww1.sinaimg.cn/large/a90af92bly1g2qeppp5p1j20sg0ikahr.jpg)
+
++++
+title: 'jokcy'
++++
+
+# 你可以创建一个列表
+
+- List Item 1
+  1. sub item
+  2. sub item
+- List Item 2
+  - sub item
+  - sub item
+- List Item 3
+
++++
+title: 'jokcy'
++++
+
+# 你可以创建一个 table
+
+| ID  | Name   | Age |
+| --- | ------ | --- |
+| 1   | Jokcy  | 18  |
+| 2   | Delphi | 17  |
+
++++
+title: 'jokcy'
++++
+
+# 你甚至可以直接使用一个 React 组件
+
+<!-- prettier-ignore-start -->
+```js
+import DemoComp from '../example/hello.jsx'
+
+<DemoComp />
+```
+<!-- prettier-ignore-end -->
+
+import DemoComp from '../example/hello.jsx'
+
+<DemoComp name='Jokcy' />
