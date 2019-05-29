@@ -14,7 +14,7 @@ const WebpackDevServer = require('webpack-dev-server')
 
 const createWebpackConfig = require('../src/webpack.config')
 
-const { version } = require('../package.json')
+const {version} = require('../package.json')
 
 const cwd = process.cwd()
 
