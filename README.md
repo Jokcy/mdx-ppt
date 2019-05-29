@@ -61,9 +61,25 @@ Markdown在编译成网页时最大的劣势是局限性较大，毕竟Markdown�
 
 # 使用
 
+首先安装
+
+```
+npm i mdx-ppt react react-dom
+
+// or
+
+yarn add mdx-ppt react react-dom
+```
+
+然后创建你的 mdx 文件
+
 你可以非常方便得通过指定文件来启动开发服务
 
 ```
+node_modules/.bin/mdx-ppt -e ppt.mdx
+
+// 或者写在 package.josn 的 `scripts` 里面
+
 mdx-ppt -e ppt.mdx
 ```
 
@@ -72,6 +88,8 @@ mdx-ppt -e ppt.mdx
 ```
 mdx-ppt --c config-file-path
 ```
+
+使用 `mdx-ppt build` 来创建生产环境的 bundle
 
 ### config
 
