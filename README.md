@@ -176,3 +176,4 @@ export default {
 3. tests
 4. theme
 5. 移除 `material-ui` 的依赖
+6. 页面路由

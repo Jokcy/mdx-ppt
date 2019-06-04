@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
-import {BrowserRouter} from 'react-router-dom'
+import {HashRouter} from 'react-router-dom'
 
 import Provider from './core/Provider'
 
@@ -13,11 +13,11 @@ import MDX from 'target'
 ReactDOM.render(
   <Provider>
     {/* <Router> */}
-    <BrowserRouter>
+    <HashRouter>
       <App>
         <MDX />
       </App>
-    </BrowserRouter>
+    </HashRouter>
     {/* </Router> */}
   </Provider>,
   document.getElementById('app'),

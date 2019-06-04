@@ -1,5 +1,7 @@
 rm -rf dist
 
+npm run compile
+
 npm run build-example
 
 cd dist
