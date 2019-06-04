@@ -1,5 +1,5 @@
 module.exports = {
-  entry: 'example/test.mdx',
+  entry: 'example/example.mdx',
   inject: 'example/client.js',
   devPort: 8888,
 }

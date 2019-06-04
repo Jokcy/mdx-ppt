@@ -7,14 +7,13 @@
     "url": "https://github.com/Jokcy/mdx-ppt"
   },
   "scripts": {
-    "dev": "webpack-dev-server --config webpack.config.js",
-    "build": "webpack --config webpack.config.js",
     "debug": "node --nolazy --inspect-brk=9229 webpack-dev-server --config webpack.config.js",
     "test": "jest",
     "test-watch": "jest --watch",
     "start": "cross-env ENV=LOCAL DEBUG=mp:* node bin/mdx-ppt dev -c example/config.js",
     "np": "np",
-    "compile": "babel client --out-dir lib --presets=@babel/preset-env,@babel/preset-react --plugins=transform-remove-console"
+    "compile": "babel client --out-dir lib --presets=@babel/preset-env,@babel/preset-react --plugins=transform-remove-console",
+    "build-example": "node bin/mdx-ppt build -c example/config.js"
   },
   "dependencies": {
     "@babel/core": "^7.4.4",
@@ -35,6 +34,7 @@
     "prop-types": "^15.7.2",
     "react-router-dom": "^5.0.0",
     "react-spring": "^8.0.20",
+    "remark-external-links": "^4.0.0",
     "remark-frontmatter": "^1.3.1",
     "remark-parse-yaml": "^0.0.2",
     "styled-components": "^4.2.0",
@@ -50,6 +50,7 @@
     "@babel/cli": "^7.4.4",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "cross-env": "^5.2.0",
+    "cypress": "^3.3.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "regenerator-runtime": "^0.13.2"

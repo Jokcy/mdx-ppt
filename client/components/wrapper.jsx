@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from 'react'
+import React, {useEffect, useRef} from 'react'
 
-import { withRouter, Switch, Route, Redirect } from 'react-router-dom'
+import {withRouter, Switch, Route, Redirect} from 'react-router-dom'
 
 import styled from 'styled-components'
 
-import { useTransition, animated } from 'react-spring'
+import {useTransition, animated} from 'react-spring'
 
 // 删除 material 的使用
 // import Button from '@material-ui/core/Button'
@@ -12,7 +12,7 @@ import { useTransition, animated } from 'react-spring'
 import ChevronLeft from '@material-ui/icons/ChevronLeft'
 import ChevronRight from '@material-ui/icons/ChevronRight'
 
-import { useTransitions } from '../core/contexts'
+import {useTransitions} from '../core/contexts'
 
 const Root = styled.div`
   height: 100%;
@@ -58,7 +58,7 @@ const ActionButton = styled.a`
   }
 `
 
-function Wrapper({ children, history, match, location }) {
+function Wrapper({children, history, match, location}) {
   const index = parseInt(match.params.index)
 
   const lastRouterRef = useRef({
@@ -67,15 +67,15 @@ function Wrapper({ children, history, match, location }) {
     location,
   })
 
-  const { transition, transitions: definedTransitions } = useTransitions()
+  const {transition, transitions: definedTransitions} = useTransitions()
 
   const definedTransition = definedTransitions[transition]
 
   const transitions = useTransition(
-    { match, location },
-    ({ location }) => location.pathname,
+    {match, location},
+    ({location}) => location.pathname,
     typeof definedTransition === 'function'
-      ? definedTransition(lastRouterRef.current, { history, match, location })
+      ? definedTransition(lastRouterRef.current, {history, match, location})
       : definedTransition,
   )
 
@@ -111,8 +111,8 @@ function Wrapper({ children, history, match, location }) {
 
   return (
     <Root className="markdown-body">
-      {transitions.map(({ item: { location }, props, key }) => {
-        console.log('item is', children, location)
+      {transitions.map(({item: {location}, props, key}) => {
+        // console.log('item is', children, location)
         return (
           <AnimatedDiv key={key} style={props}>
             <Switch location={location}>
@@ -135,12 +135,12 @@ function Wrapper({ children, history, match, location }) {
       <Actions>
         {index > 1 ? (
           <ActionButton onClick={back}>
-            <ChevronLeft style={{ fontSize: 32 }} />
+            <ChevronLeft style={{fontSize: 32}} />
           </ActionButton>
         ) : null}
         {index < children.length ? (
           <ActionButton onClick={next}>
-            <ChevronRight style={{ fontSize: 32 }} />
+            <ChevronRight style={{fontSize: 32}} />
           </ActionButton>
         ) : null}
       </Actions>

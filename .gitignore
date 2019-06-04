@@ -3,5 +3,6 @@ lib
 .vscode
 *-error.log
 .yarnrc
+dist
 
 *.lock

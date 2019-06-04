@@ -14,7 +14,7 @@ import CodeBlock from './CodeBlock'
 const commonStyle = `
   line-height: 1.25;
   margin-bottom: 16px;
-  margin-top: 24px;
+  margin-top: 0px;
 `
 
 /**

@@ -1,0 +1,137 @@
+# 欢迎来到 MDX-PPT
+
+MDX-PPT 提供你通过写 [MDX](https://mdxjs.com/) 语法，来生产 PPT 网页，让你能够非常方便得进行线上演示，
+并充分享受网页带来的便利。
+
+>MDX 基于 Markdown，他实现所有 Markdown 的语法，并在此基础上增加 React 的支持，
+>让我们在享受 Markdown 简便的排版语法的同时又能享受 React 带来的可扩展性
+
++++
++++
+
+# 通过 `+++` 来进行 PPT 的分割
+
+```
++++
+page: page1
++++
+
+... PPT content here
+
++++
+page: page2
++++
+```
+
+两个 `+++` 中间的内容会成为一个 PPT，`+++` 里面的内容则会成为 props 传递给页面
+
++++
++++
+
+# 在这里你可以展示你的代码
+
+```js
+function hello_world() {
+  alert('hello world')
+}
+
+hello_world()
+```
+
++++
++++
+
+# 使用 Markdown 语法的标题
+
+## 二号标题
+
+### 三号标题
+
+#### 四号标题
+
+##### 五号号标题
+
+###### 六号标题
+
++++
++++
+
+# inline 语法
+
+[这是一个百度的链接](http://baidu.com)
+
+这里是**强调**
+
+这里是*斜体*
+
+这里是`inline code`
+
+=== a=b,c=d,x=12
+这里是~~删除内容~~
+
++++
++++
+
+# 展示图片
+
+这是图片的展示
+![这是图片](http://ww1.sinaimg.cn/large/a90af92bly1g2qeppp5p1j20sg0ikahr.jpg)
+
++++
++++
+
+# 你可以创建一个列表
+
+- List Item 1
+  1. sub item
+  2. sub item
+- List Item 2
+  - sub item
+  - sub item
+- List Item 3
+
++++
++++
+
+# 你可以创建一个 table
+
+| ID  | Name   | Age |
+| --- | ------ | --- |
+| 1   | Jokcy  | 18  |
+| 2   | Delphi | 17  |
+
++++
++++
+
+# 你甚至可以直接使用一个 React 组件
+
+<!-- prettier-ignore-start -->
+```js
+import DemoComp from '../example/hello.jsx'
+
+<DemoComp />
+```
+<!-- prettier-ignore-end -->
+
+import DemoComp from '../example/hello.jsx'
+
+<DemoComp name='Jokcy' />
+
++++
++++
+
+# 强大的自定义能力
+
+你可以非常简单得通过定义一系列 React 组件来自定义你的 PPT 展示。
+
+[请看文档](https://github.com/Jokcy/mdx-ppt#%E5%8F%AF%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E7%BB%84%E4%BB%B6)
+
++++
++++
+
+# 以上就是 MDX-PPT 的功能
+
+该项目当前仍然出于早期开发，会有 API 的变动，也有很多功能正等待开发
+如果你有任何建议或者意见，issue 和 PR 都是极好的。
+
+我是 [Jokcy](https://jokcy.me)，一个平淡的前端开发者。

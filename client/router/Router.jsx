@@ -7,7 +7,7 @@ import React, {
   useContext,
 } from 'react'
 
-import { createBrowserHistory } from 'history'
+import {createBrowserHistory} from 'history'
 
 const history = createBrowserHistory()
 
@@ -28,7 +28,7 @@ function getIndex(url) {
   return 0
 }
 
-export default function Router({ children }) {
+export default function Router({children}) {
   const [location, setLocation] = useState(history.location)
 
   const [index, setIndex] = useState(getIndex(history.location.pathname))
@@ -64,7 +64,6 @@ export default function Router({ children }) {
 
   useEffect(() => {
     const unListen = history.listen((location, action) => {
-      console.log(action, location)
       const index = getIndex(location.pathname)
       if (index === 0) {
         history.replace('/1')

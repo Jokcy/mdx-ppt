@@ -6,6 +6,9 @@ const debug = require('debug')('mp:webpack')
 const remarkFrontmatter = require('remark-frontmatter')
 const remarkYaml = require('remark-parse-yaml')
 
+// 设置为可配置项目
+const externalLink = require('remark-external-links')
+
 const CircularDependencyPlugin = require('circular-dependency-plugin')
 
 const {page, rebuildTree, item_props} = require('./parser')
@@ -42,7 +45,7 @@ function createConfig(isDev, options = defaultOptions) {
     mode: isDev ? 'development' : 'production',
     entry: path.resolve(__dirname, './entry.js'),
     output: {
-      publicPath: '/public/',
+      publicPath: isDev ? '/public/' : '/',
       filename: '[hash:8].js',
     },
     module: {
@@ -60,6 +63,7 @@ function createConfig(isDev, options = defaultOptions) {
               loader: '@mdx-js/loader',
               options: {
                 remarkPlugins: [
+                  externalLink,
                   [
                     remarkFrontmatter,
                     {type: 'yaml', marker: '+', anywhere: true},
